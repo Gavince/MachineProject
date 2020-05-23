@@ -1,0 +1,92 @@
+SalePrice 以美元出售的房产价格。
+MSSubClass 建筑类
+MSZoning 城市总体规划分区
+LotFrontage 连接物业的街道线
+LotArea: Lot size in square feet 方块大小
+Street 道路入口类型
+Alley 巷类型
+LotShape 地产的外形
+LandContour 地产的扁平化
+Utilities 地产的公用事业类型
+LotConfig 地产配置
+LandSlope 地产的坡
+Neighborhood 城市范围内的物理位置
+Condition1 接近主干道或铁路
+Condition2 接近主路或铁路
+BldgType 住宅类型
+HouseStyle 居家风格
+**OverallQual 整体质量和表面质量**
+OverallCond 总体状态额定值
+YearBuilt 原施工日期
+YearRemodAdd 重塑日期
+RoofStyle 屋顶类型
+RoofMatl 屋顶材料
+Exterior1st 房屋外墙
+Exterior2nd 外部第二层：房屋外部覆盖物
+MasVnrType 圬工单板型
+MasVnrArea 砌体单板覆盖面积
+ExterQual: 外观材质
+ExterCond 外墙材料的现状
+Foundation 地基类型
+BsmtQual 地下室的高度
+BsmtCond 地下室概况
+BsmtExposure: 走道或花园式地下室墙
+BsmtFinType1 地下室竣工面积质量
+BsmtFinSF1 1型成品面积
+BsmtFinType2 第二成品区域的质量（如果存在）
+BsmtFinSF2 2型成品面积
+BsmtUnfSF 地下室面积
+**TotalBsmtSF 地下室面积总计面积**
+Heating 暖气方式
+HeatingQC 暖气质量与条件
+CentralAir 空调
+Electrical 电气系统
+1stFlrSF 一楼面积
+2ndFlrSF 二楼面积
+LowQualFinSF 低质量完工面积（所有楼层）
+**GrLivArea 高档（地面）居住面积**
+BsmtFullBath 地下室全浴室
+BsmtHalfBath 地下室半浴室
+FullBath 高档浴室
+HalfBath 半日以上洗澡浴室
+Bedroom 地下室层以上的卧室数
+Kitchen 厨房数量
+KitchenQual 厨房品质
+TotRmsAbvGrd 总房间（不包括浴室）
+Functional 家庭功能评级
+Fireplaces 壁炉数
+FireplaceQu 壁炉质量
+GarageType 车库位置
+GarageYrBlt 车库建成年
+GarageFinish 车库的内饰
+GarageCars 车库容量大小
+GarageArea 车库大小
+GarageQual 车库质量
+GarageCond 车库状况
+PavedDrive 铺好的车道
+WoodDeckSF 木制甲板面积
+OpenPorchSF 外部走廊面积
+EnclosedPorch 闭走廊面积
+3SsnPorch: 三季走廊面积
+ScreenPorch 屏风走廊面积
+PoolArea 泳池面积
+PoolQC 泳池的质量
+Fence 围栏质量
+MiscFeature 其他类别的杂项特征
+MiscVal 杂项价值
+MoSold 月售出
+YrSold 年销售
+SaleType 销售类型
+SaleCondition 销售条件
+
+### 知识点积累
+
+####　四分位数
+
+- 下四分位数：(第一四分位数或Q)将数据组最下部的1/4与上部的3/4分开。它是数据组下半部分的中位数。(如果数据组中的数据为奇数个,那么除去数据组的中间值。)
+- 中间四分位数：(第二四分位数或Q2)是总体的中位数
+- 上四分位数：(第三四分位数或Q)将数据组最下部的3/4与上部的1/4分开。它是数据组上半部分的中位数。(如果数据组中的数据为奇数个,除去数据组的中间值。)
+
+数据组的第n百分位数把数据分为下部的n%和上部的(100-n)%。如果一个数值正好在两个百分
+位数之间,通常说这个数值处于低位的百分位数。可以通过以下公式大致估计任一组数据的百分位数
+    百分位数 = 小于该数值的数据个数 /  数据组中数据的总个数 * 100%
