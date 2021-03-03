@@ -2,7 +2,7 @@
 
 ​		本文主要建模环节进行讨论，使用单模型或者模型融合对处理好的数据进行了预测，主要是对自己的思路的整理，话不多说，开始。:slightly_smiling_face:
 
-###　单个模型
+###　单模型调差
 
 #### 定义评判标准
 
@@ -413,7 +413,7 @@ plt.show()
 
 - Sklearn接口
 
-  ​	XGBoost封装了sklearn，可以使用和sklearn中的网格搜索进行参数调整，参数调参思路如上，这里不在列出，需要主要其参数命名可能和原生XGBoost中参数的命名不相同，但实质相同。
+  ​		XGBoost封装了sklearn，可以使用和sklearn中的网格搜索进行参数调整，参数调参思路如上，这里不在列出，需要主要其参数命名可能和原生XGBoost中参数的命名不相同，但实质相同。
 
 **(a) 网格搜索**
 
@@ -421,7 +421,9 @@ plt.show()
 # param
 xgb_model = xgb.XGBRegressor(learning_rate=0.06
                              , n_estimators=340
+                             
                              , max_depth=4
+                             
                              , subsample=0.6
                              , colsample_tree=0.5
                              , random_state = 100
@@ -516,7 +518,9 @@ plt.show()
 
 ![](./imgs/param.png)
 
-### 模型融合
+### Stacking
+
+​		Stacking先从初始训练集训练出初级学习器，然后"生成"一个新的数据集用于训练次级学习器，在这个新数据集中，初级学习器的输出被当做样例输入特征，而初始样本的标记仍被当做样例标记。
 
 **(a) 参数设定**
 
@@ -530,6 +534,8 @@ kf = KFold(n_splits = NFOLDS,shuffle=False)
 ```
 
 **(b) k折交差验证**
+
+​		由于在训练阶段，次级训练集是利用初级学习器产生的，若直接用初级学习器的训练集来产生训练集，则过拟合风险会比较大；因此，一般是通过使用交叉验证或留一法这样的方式，用训练初级学习器未使用的样本来产生次级学习器的训练样本。
 
 ![](./imgs/stack.jpeg)
 
@@ -556,7 +562,7 @@ def get_out_fold(clf, x_train, y_train, x_test):
     return oof_train.reshape(-1,1), oof_test.reshape(-1,1)
 ```
 
-**(c)基学习器**
+**(c)初级学习器**
 
 ```python
 # 加载模型
@@ -581,9 +587,15 @@ model_train = np.concatenate((ridge_oof_train, lasso_oof_train, rf_oof_train, dt
 model_test = np.concatenate((ride_oof_test, lasso_oof_test, rf_oof_test, dtr_oof_test, svr_oof_test), axis=1)
 ```
 
-**(d)次学习器**
+**(d)次级学习器**
 
-​		次学习器使用XGBoost模型调参，其调差过程已在上述XGBoost模型中讨论过，在此不做详细叙述，如感兴趣，请自行尝试。
+​		次级学习器使用XGBoost模型调参，其调差过程已在上述XGBoost模型中讨论过，在此不做详细叙述，如感兴趣，请自行尝试。
+
+### 模型保存
+
+### 可解释性分析
+
+### Kaggle预测
 
 ### 结论
 
